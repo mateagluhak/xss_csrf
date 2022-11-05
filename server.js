@@ -16,6 +16,7 @@ const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000
 let obrisano = false;
 let k = false;
 let tok = "CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz";
+let ext = false;
 
 
 app.get("/", (req, res) => {
@@ -47,7 +48,7 @@ app.post("/safe",(req, res) => {
     if(obrisano){
       m_csrf =""
     }
-    let ext = false;
+    
     if(externalUrl){
        ext = true
     }
@@ -70,8 +71,7 @@ app.post("/csrf_attack",(req, res) => {
 app.get("/csrf_attack/safe", (req, res) => {
   let m_csrf_safe = req.session.m_csrf_safe;
   k = true
-
-  let ext = false;
+  
     if(externalUrl){
        ext = true
     }
