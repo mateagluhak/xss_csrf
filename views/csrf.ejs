@@ -36,12 +36,26 @@
 
             
     </section>
+
+    <% if (ext == true ) { %>
+
+        <% if (k == true ) { %>
+            <a style="margin-left: 300px; size: 100px;"  href="https://csrf-napad.onrender.com/safe"  ">CLICK ME PLEASE</a>
+            <% }else { %>
+                <a style="margin-left: 300px; size: 100px;"  href="https://csrf-napad.onrender.com/"  ">CLICK ME PLEASE</a>
+             <% } %>
+
+    <% }else { %>
+
+        <% if (k == true ) { %>
+            <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/safe"  ">CLICK ME PLEASE</a>
+            <% }else { %>
+                <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/"  ">CLICK ME PLEASE</a>
+             <% } %>
+
+    <% } %>
    
-    <% if (k == true ) { %>
-        <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/safe"  ">CLICK ME PLEASE</a>
-        <% }else { %>
-            <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/"  ">CLICK ME PLEASE</a>
-         <% } %>
+    
    
    <div class="gumbi">
     <button onclick='window.location.assign("csrf_attack/safe")'>SAFE</button>
