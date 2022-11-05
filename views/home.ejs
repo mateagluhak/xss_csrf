@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="/style.css" />
+    
+    </head>
+<body>
+    
+    <section id="user-input">
+        <form method="POST">
+          <div class="form-control">
+            <% if (k == true ) { %>
+                <h1>XSS reflektirani napad - <div style="color: rgb(41, 207, 8);display: inline-block;"><%= naslov %></div> </h1>
+            <% }else { %>
+               <h1>XSS reflektirani napad - <div style="color: rgb(255, 43, 43);display: inline-block;"><%= naslov %></div> </h1>
+            <% } %>
+            
+            <label for="user-message">Unesite poruku</label>
+            <textarea id="user-message" name="poruka" ></textarea>
+            
+          </div>
+          <button type="submit">Submit</button>
+          
+        </form>
+        
+      </section>
+     
+      <% if (k == true ) { %>
+            <section id="user-messages">
+                <ul><%= m %></ul>
+            </section>
+        <% }else { %>
+            <section id="user-messages">
+                <ul><%- m %></ul>
+            </section>
+        <% } %>
+            
+      <div class="gumbi">
+        <button onclick='window.location.assign("safe")'>SAFE</button>
+        <button onclick='window.location.assign("/")'>UNSAFE</button>
+      </div>
+     
+      <button style="background-color: rgb(94, 24, 129); color: white;" onclick='window.location.assign("/csrf_attack")'>CSRF napad</button>
+</body>

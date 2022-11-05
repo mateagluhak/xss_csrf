@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="/style.css" />
+    
+    </head>
+<body>
+    
+    <section id="user-input">
+        <form method="POST">
+            
+                <div class="form-control">
+                  <% if (k == true ) { %>
+                      <h1>CSRF napad - <div style="color: rgb(41, 207, 8);display: inline-block;"><%= naslov %></div> </h1>
+                  <% }else { %>
+                     <h1>CSRF napad - <div style="color: rgb(255, 43, 43);display: inline-block;"><%= naslov %></div> </h1>
+                  <% } %>
+                  
+                  <label for="user-message">Unesite važnu informaciju</label>
+                  <textarea id="user-message" name="poruka_csrf"></textarea>
+                  <input type="hidden" name="csrftoken" value="CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz" />
+                  
+                  
+                  
+                </div>
+                <button type="submit">Submit</button>
+                
+        </form>
+     
+    </section>
+   
+    <section id="user-messages">
+       
+            <ul><%= m_csrf %></ul>
+
+            
+    </section>
+   
+    <% if (k == true ) { %>
+        <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/safe"  ">CLICK ME PLEASE</a>
+        <% }else { %>
+            <a style="margin-left: 300px; size: 100px;"  href="http://localhost:3001/"  ">CLICK ME PLEASE</a>
+         <% } %>
+   
+   <div class="gumbi">
+    <button onclick='window.location.assign("http://localhost:3000/csrf_attack/safe")'>SAFE</button>
+    <button onclick='window.location.assign("http://localhost:3000/csrf_attack")'>UNSAFE</button>
+  </div>
+  <button style="background-color: rgb(94, 24, 129); color: white;" onclick='window.location.assign("/")'>XSS napad</button>
+</body>
