@@ -13,7 +13,6 @@ const externalUrl = process.env.RENDER_EXTERNAL_URL;
 const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 
-let obrisano = false;
 let k = false;
 let tok = "CIwNZNlR4XbisJF39I8yWnWX9wX4WFoz";
 let ext = false;
@@ -45,14 +44,11 @@ app.post("/safe",(req, res) => {
   app.get("/csrf_attack", (req, res) => {
     let m_csrf = req.session.m_csrf;
     k = false
-    if(obrisano){
-      m_csrf =""
-    }
-    
+   
     if(externalUrl){
        ext = true
     }
-    res.render('csrf', {m_csrf: m_csrf,k: k, naslov: "nezaštićeno", obrisano: obrisano, ext: ext})
+    res.render('csrf', {m_csrf: m_csrf,k: k, naslov: "nezaštićeno",ext: ext})
 })
 
  
@@ -64,7 +60,6 @@ app.post("/csrf_attack",(req, res) => {
   }
   let data = req.body.poruka_csrf;
   req.session.m_csrf = data
-  obrisano = false
     res.redirect("/csrf_attack");
 })
 
@@ -92,19 +87,6 @@ app.post("/csrf_attack/safe",(req, res) => {
   
 })
 
-
-
-
-
-//DELETE
-
-
-app.get("/delete", (req, res) => {
-    k = false;
-    obrisano = true
-    res.redirect("/csrf_attack");
-   
-}); 
 
 
 if (externalUrl) {
