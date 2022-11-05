@@ -47,8 +47,11 @@ app.post("/safe",(req, res) => {
     if(obrisano){
       m_csrf =""
     }
-   
-    res.render('csrf', {m_csrf: m_csrf,k: k, naslov: "nezaštićeno", obrisano: obrisano})
+    let ext = false;
+    if(externalUrl){
+       ext = true
+    }
+    res.render('csrf', {m_csrf: m_csrf,k: k, naslov: "nezaštićeno", obrisano: obrisano, ext: ext})
 })
 
  
@@ -67,8 +70,13 @@ app.post("/csrf_attack",(req, res) => {
 app.get("/csrf_attack/safe", (req, res) => {
   let m_csrf_safe = req.session.m_csrf_safe;
   k = true
+
+  let ext = false;
+    if(externalUrl){
+       ext = true
+    }
  
-  res.render('csrf', {m_csrf: m_csrf_safe,k: k, naslov: "zaštićeno"})
+  res.render('csrf', {m_csrf: m_csrf_safe,k: k, naslov: "zaštićeno",ext: ext})
 })
 app.post("/csrf_attack/safe",(req, res) => {
   if(tok == req.body.csrftoken){
@@ -102,8 +110,7 @@ app.get("/delete", (req, res) => {
 if (externalUrl) {
   const hostname = 'localhost';
   app.listen(port, hostname, () => {
-  console.log(`Server locally running at http://${hostname}:${port}/ and from
-  outside on ${externalUrl}`);
+  console.log(`Server running on ${externalUrl}`);
   });
   }else {
     app.listen(3000, () => {
